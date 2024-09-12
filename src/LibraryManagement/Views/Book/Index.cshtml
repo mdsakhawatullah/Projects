@@ -1,0 +1,30 @@
+﻿@model IEnumerable<LibraryManagement.Models.Book>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Book Index</h1>
+
+<table class="table">
+
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Author</th>
+			<th>ISBN</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.Title</td>
+				<td>@item.Author</td>
+				<td>@item.ISBN</td>
+
+			</tr>
+		}
+	</tbody>
+
+</table>

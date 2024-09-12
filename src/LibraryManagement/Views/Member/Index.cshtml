@@ -1,0 +1,30 @@
+﻿@model IEnumerable<LibraryManagement.Models.Member>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Member Index</h1>
+
+<table class="table">
+
+	<thead>
+		<tr>
+			<th>Number</th>
+			<th>Name</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.MembershipNumber</td>
+				<td>@item.Name</td>
+				<td>@item.JoinDate</td>
+
+			</tr>
+		}
+	</tbody>
+
+</table>

@@ -2,12 +2,11 @@
 
 namespace LibraryManagement.Models
 {
-    public class Library
+    public class Staff
     {
         [Key]
-        public int Id { get; set; }
         public string Name { get; set; }
-        //public string Address { get; set; }
-       // public string Thana {  get; set; }
+        public int StaffId { get; set; }
+        public string Position { get; set; }
     }
 }

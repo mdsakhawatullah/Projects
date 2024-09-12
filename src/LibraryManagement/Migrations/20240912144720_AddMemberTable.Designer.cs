@@ -3,6 +3,7 @@ using LibraryManagement.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240912144720_AddMemberTable")]
+    partial class AddMemberTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,24 +42,6 @@ namespace LibraryManagement.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("LibraryManagement.Models.Category", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CreateDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("LibraryManagement.Models.Library", b =>
                 {
                     b.Property<int>("Id")
@@ -72,26 +57,6 @@ namespace LibraryManagement.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MyProperty");
-                });
-
-            modelBuilder.Entity("LibraryManagement.Models.Loan", b =>
-                {
-                    b.Property<int>("BookID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookID"));
-
-                    b.Property<string>("DueDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MemberID")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookID");
-
-                    b.ToTable("Loans");
                 });
 
             modelBuilder.Entity("LibraryManagement.Models.Member", b =>
@@ -113,23 +78,6 @@ namespace LibraryManagement.Migrations
                     b.HasKey("MembershipNumber");
 
                     b.ToTable("Members");
-                });
-
-            modelBuilder.Entity("LibraryManagement.Models.Staff", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("Staffs");
                 });
 
             modelBuilder.Entity("LibraryManagement.Models.Student", b =>

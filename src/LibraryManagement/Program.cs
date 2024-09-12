@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<LibraryDbContext>(x => x.UseSqlServer
 (builder.Configuration.GetConnectionString("LibraryDbContextCS")));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
