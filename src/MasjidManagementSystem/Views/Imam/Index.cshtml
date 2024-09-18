@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MasjidManagementSystem.Models.Imam>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Event Index</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Hire Date</th>
+			<th scope="col">Qualification</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.Name</td>
+				<td>@item.HireDate</td>
+				<td>@item.Qualification</td>
+			</tr>
+		}
+
+	</tbody>
+
+
+</table>

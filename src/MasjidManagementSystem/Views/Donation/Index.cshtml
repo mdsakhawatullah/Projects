@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MasjidManagementSystem.Models.Donation>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Donation Index</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Donar Name</th>
+			<th scope="col">Amount</th>
+			<th scope="col">Donatin Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.DonarName</td>
+				<td>@item.Amount</td>
+				<td>@item.DonationDate</td>
+			</tr>
+		}
+
+	</tbody>
+
+
+</table>
