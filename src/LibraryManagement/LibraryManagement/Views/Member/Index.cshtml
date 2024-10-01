@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LibraryManagement.Models.Member>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Member Index</h1>
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+
+	<thead>
+		<tr>
+			<th>Number</th>
+			<th>Name</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.MembershipNumber</td>
+				<td>@item.Name</td>
+				<td>@item.JoinDate</td>
+
+				<td>
+					<a asp-action="Update" class="btn btn-primary" asp-route-memberId="@item.MembershipNumber">Update</a>
+					<a asp-action="Details" asp-route-id="@item.MembershipNumber">Details</a>
+					<a asp-action="Delete" asp-route-id="@item.MembershipNumber">Delete</a>
+				</td>
+
+			</tr>
+
+		}
+	</tbody>
+
+</table>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MasjidManagementSystem.Models.Volunteer>
+
+@{
+	ViewData["Tile"] = "Index-Volunteer";
+}
+
+<h1>Volunteer Index</h1>
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Contact</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in Model)
+		{
+			<tr>
+				<td>@item.Id</td>
+				<td>@item.Name</td>
+				<td>@item.Role</td>
+				<td>@item.ContactNumber</td>
+
+				<td>
+					<a asp-action="Update" class="btn btn-primary" asp-route-id="@item.Id">Update</a>
+					<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

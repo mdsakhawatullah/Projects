@@ -5,6 +5,9 @@
 }
 
 <h1>Donation Index</h1>
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
 
 <table class="table table-striped">
 	<thead>
@@ -21,6 +24,13 @@
 				<td>@item.DonarName</td>
 				<td>@item.Amount</td>
 				<td>@item.DonationDate</td>
+
+				<td>
+					<a asp-action="Update" class="btn btn-primary" asp-route-id="@item.Id">Update</a>
+					<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+
 			</tr>
 		}
 

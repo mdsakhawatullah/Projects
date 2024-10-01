@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LibraryManagement.Models.Loan>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Loan Index</h1>
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+
+	<thead>
+		<tr>
+			<th>BookID</th>
+			<th>MemberID</th>
+			<th>DueDate</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.BookID</td>
+				<td>@item.MemberID</td>
+				<td>@item.DueDate</td>
+
+				<td>
+					<a asp-action="Update" class="btn btn-primary" asp-route-bookId="@item.BookID">Update</a>
+					<a asp-action="Details" asp-route-id="@item.BookID">Details</a>
+					<a asp-action="Delete" asp-route-id="@item.BookID">Delete</a>
+				</td>
+
+			</tr>
+		}
+	</tbody>
+
+</table>
