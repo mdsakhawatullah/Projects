@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryManagement.Models
 {
@@ -16,6 +17,9 @@ namespace LibraryManagement.Models
 		public DateTime DateOfBirth { get; set; }
 		public int Level { get; set; }
 		public int Age { get; set; }
+		[NotMapped]
+		public IFormFile UploadedFile { get; set; }
+		public string? FileName { get; set; }
 
 
 	}

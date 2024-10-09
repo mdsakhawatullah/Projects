@@ -1,14 +1,16 @@
 ﻿using LibraryManagement.DB;
 using Microsoft.AspNetCore.Mvc;
 using LibraryManagement.Models;
+using LibraryManagement.Helper;
 
 namespace LibraryManagement.Controllers
 {
     public class LoanController : Controller
     {
         private readonly LibraryDbContext _context;
+		private string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
 
-        public LoanController(LibraryDbContext context)
+		public LoanController(LibraryDbContext context)
         {
             _context = context;   
         }
@@ -26,7 +28,17 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         public IActionResult Create(Loan loan)
         {
-            _context.Loans.Add(loan);
+			//fiel handle
+			var result = FileHelper.SaveFile(loan.UploadedFile, uploadPath);
+			if (result)
+			{
+				loan.FileName = loan.UploadedFile.FileName;
+			}
+			else
+			{
+				loan.FileName = "No File Found";
+			}
+			_context.Loans.Add(loan);
             _context.SaveChanges();
             return View();
         }

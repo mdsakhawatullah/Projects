@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.DB;
+using LibraryManagement.Helper;
 using LibraryManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,8 @@ namespace LibraryManagement.Controllers
     public class StaffController : Controller
     {
         private readonly LibraryDbContext _context;
-        public StaffController(LibraryDbContext context)
+		private string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+		public StaffController(LibraryDbContext context)
         {
             _context = context;
             
@@ -25,7 +27,17 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         public IActionResult Create(Staff staff)
         {
-            _context.Staffs.Add(staff);
+			//fiel handle
+			var result = FileHelper.SaveFile(staff.UploadedFile, uploadPath);
+			if (result)
+			{
+				staff.FileName = staff.UploadedFile.FileName;
+			}
+			else
+			{
+				staff.FileName = "No File Found";
+			}
+			_context.Staffs.Add(staff);
             _context.SaveChanges();
             return View();
 

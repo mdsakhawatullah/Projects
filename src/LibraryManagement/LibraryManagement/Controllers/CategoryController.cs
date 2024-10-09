@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.DB;
+using LibraryManagement.Helper;
 using LibraryManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,8 @@ namespace LibraryManagement.Controllers
     public class CategoryController : Controller
     {
         private readonly LibraryDbContext _context;
-        public CategoryController(LibraryDbContext context)
+		private string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+		public CategoryController(LibraryDbContext context)
         {
             _context = context;
             
@@ -20,6 +22,7 @@ namespace LibraryManagement.Controllers
 
         public IActionResult Create()
         {
+
             return View();
 
         }
@@ -27,7 +30,17 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
-            _context.Categories.Add(category);
+			//fiel handle
+			var result = FileHelper.SaveFile(category.UploadedFile, uploadPath);
+			if (result)
+			{
+				category.FileName = category.UploadedFile.FileName;
+			}
+			else
+			{
+				category.FileName = "No File Found";
+			}
+			_context.Categories.Add(category);
             _context.SaveChanges();
             return View();
         }

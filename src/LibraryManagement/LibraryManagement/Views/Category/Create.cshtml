@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
 	<div class="col-md-4">
-		<form asp-action="Create">
+		<form asp-action="Create" enctype="multipart/form-data">
 			<div class="form-group">
 				<label asp-for="Name" class="control-label"></label>
 				<input asp-for="Name" class="form-control" />
@@ -47,6 +47,19 @@
 					<option value="UK">UK</option>
 					<option value="Bangladesh">Bangladesh</option>
 				</select>
+			</div>
+			<!--File Upload-->
+			<div>
+				<label asp-for="UploadedFile"></label>
+				<input type="file" asp-for="UploadedFile" />
+				<br />
+				@*  @if(!string.IsNullOrEmpty(Model.FileName))
+				{
+				<p>
+				Current File:
+				<a  asp-route-id="@Model.Id">@Model.FileName</a>
+				</p>
+				}  *@
 			</div>
 			<!--Date Input-->
 			<div>

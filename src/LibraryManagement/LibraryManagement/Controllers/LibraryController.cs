@@ -6,7 +6,8 @@ namespace LibraryManagement.Controllers
     public class LibraryController : Controller
     {
         private readonly LibraryDbContext  _context;
-        public LibraryController(LibraryDbContext context)
+		private string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+		public LibraryController(LibraryDbContext context)
         {
             _context = context;           
         }

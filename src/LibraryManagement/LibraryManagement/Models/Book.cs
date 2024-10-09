@@ -19,6 +19,12 @@ namespace LibraryManagement.Models
 		public int Level { get; set; }
 		public int Age { get; set; }
 
+		[NotMapped]
+		public IFormFile UploadedFile { get; set; }
+		public string? FileName { get; set; }
+		
+
+
 
 
 	}

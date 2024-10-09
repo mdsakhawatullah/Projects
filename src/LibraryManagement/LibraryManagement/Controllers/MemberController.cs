@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.InteropServices;
 using LibraryManagement.Models;
+using LibraryManagement.Helper;
 
 namespace LibraryManagement.Controllers
 {
 	public class MemberController : Controller
 	{
 		private readonly LibraryDbContext _context;
+		private string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
 		public MemberController(LibraryDbContext context)
 		{
 			_context = context;
@@ -26,6 +28,16 @@ namespace LibraryManagement.Controllers
 		[HttpPost]
 		public IActionResult Create(Member member)
 		{
+			//fiel handle
+			var result = FileHelper.SaveFile(member.UploadedFile, uploadPath);
+			if (result)
+			{
+				member.FileName = member.UploadedFile.FileName;
+			}
+			else
+			{
+				member.FileName = "No File Found";
+			}
 			_context.Members.Add(member);
 			_context.SaveChanges();
 			return View();
